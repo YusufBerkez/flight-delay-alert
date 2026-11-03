@@ -3,7 +3,7 @@
 # Where the flight facts come from:
 #   demo    = demo_data.json (no internet, safe for presentations)
 #   airlabs = AirLabs API (needs a free key, see README)
-source = demo
+source = airlabs
 
 # Name of the environment variable that holds the AirLabs key.
 # The key itself never goes into this file or into Git.
@@ -11,7 +11,7 @@ api_key_env = AIRLABS_API_KEY
 
 # Push notifications with ntfy. Leave ntfy_topic empty to only print alerts.
 ntfy_server = https://ntfy.sh
-ntfy_topic =
+ntfy_topic = flight-alert-yz-83k29x
 ntfy_token_env = NTFY_TOKEN
 
 # Alert when a flight is at least this many minutes late,

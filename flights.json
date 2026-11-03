@@ -1,7 +1,7 @@
 {
-  "TK1234": {
+  "TK2524": {
     "threshold_min": null,
-    "note": "Pick up Ayse at ESB"
+    "note": "AirLabs API test"
   },
   "PC2610": {
     "threshold_min": 20,

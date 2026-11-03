@@ -1,0 +1,79 @@
+{
+  "about": "Fake flight facts in the AirLabs field names. Each step is one monitoring round.",
+  "flights": {
+    "TK1234": {"threshold_min": null, "note": "Pick up Ayse at ESB"},
+    "PC2610": {"threshold_min": 20, "note": "Business trip to Izmir"}
+  },
+  "steps": [
+    {
+      "label": "Baseline: both flights on time",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "scheduled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": "2026-11-03 18:30", "dep_delayed": 0, "arr_delayed": null, "dep_gate": "A12", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"flight_iata": "PC2610", "status": "scheduled", "dep_iata": "SAW", "arr_iata": "ADB", "dep_time": "2026-11-03 19:05", "dep_estimated": "2026-11-03 19:05", "dep_delayed": 0, "arr_delayed": null, "dep_gate": "204", "dep_terminal": null, "arr_gate": null}
+      }
+    },
+    {
+      "label": "TK1234 runs 25 minutes late",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "scheduled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": "2026-11-03 18:55", "dep_delayed": 25, "arr_delayed": null, "dep_gate": "A12", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"flight_iata": "PC2610", "status": "scheduled", "dep_iata": "SAW", "arr_iata": "ADB", "dep_time": "2026-11-03 19:05", "dep_estimated": "2026-11-03 19:05", "dep_delayed": 0, "arr_delayed": null, "dep_gate": "204", "dep_terminal": null, "arr_gate": null}
+      }
+    },
+    {
+      "label": "Gate change for TK1234",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "scheduled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": "2026-11-03 18:55", "dep_delayed": 25, "arr_delayed": null, "dep_gate": "C07", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"flight_iata": "PC2610", "status": "scheduled", "dep_iata": "SAW", "arr_iata": "ADB", "dep_time": "2026-11-03 19:05", "dep_estimated": "2026-11-03 19:05", "dep_delayed": 0, "arr_delayed": null, "dep_gate": "204", "dep_terminal": null, "arr_gate": null}
+      }
+    },
+    {
+      "label": "TK1234 delay grows; PC2610 gets a new schedule and 10 min (under the threshold)",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "scheduled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": "2026-11-03 19:25", "dep_delayed": 55, "arr_delayed": null, "dep_gate": "C07", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"flight_iata": "PC2610", "status": "scheduled", "dep_iata": "SAW", "arr_iata": "ADB", "dep_time": "2026-11-03 19:20", "dep_estimated": "2026-11-03 19:30", "dep_delayed": 10, "arr_delayed": null, "dep_gate": "204", "dep_terminal": null, "arr_gate": null}
+      }
+    },
+    {
+      "label": "Same facts again: no news, no alert",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "scheduled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": "2026-11-03 19:25", "dep_delayed": 55, "arr_delayed": null, "dep_gate": "C07", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"flight_iata": "PC2610", "status": "scheduled", "dep_iata": "SAW", "arr_iata": "ADB", "dep_time": "2026-11-03 19:20", "dep_estimated": "2026-11-03 19:30", "dep_delayed": 10, "arr_delayed": null, "dep_gate": "204", "dep_terminal": null, "arr_gate": null}
+      }
+    },
+    {
+      "label": "A broken record and a source timeout",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "scheduled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": "2026-11-03 19:25", "dep_delayed": "about an hour", "arr_delayed": null, "dep_gate": "C07", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"_error": "timeout"}
+      }
+    },
+    {
+      "label": "Source still failing for PC2610",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "scheduled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": "2026-11-03 19:25", "dep_delayed": 55, "arr_delayed": null, "dep_gate": "C07", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"_error": "timeout"}
+      }
+    },
+    {
+      "label": "TK1234 cancelled; PC2610 fails a third time",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "cancelled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": null, "dep_delayed": null, "arr_delayed": null, "dep_gate": "C07", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"_error": "HTTP 503 server error"}
+      }
+    },
+    {
+      "label": "PC2610 is back and 30 min late (gate missing in the answer)",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "cancelled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": null, "dep_delayed": null, "arr_delayed": null, "dep_gate": "C07", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"flight_iata": "PC2610", "status": "scheduled", "dep_iata": "SAW", "arr_iata": "ADB", "dep_time": "2026-11-03 19:20", "dep_estimated": "2026-11-03 19:50", "dep_delayed": 30, "arr_delayed": null, "dep_gate": null, "dep_terminal": null, "arr_gate": null}
+      }
+    },
+    {
+      "label": "PC2610 departs",
+      "records": {
+        "TK1234": {"flight_iata": "TK1234", "status": "cancelled", "dep_iata": "IST", "arr_iata": "ESB", "dep_time": "2026-11-03 18:30", "dep_estimated": null, "dep_delayed": null, "arr_delayed": null, "dep_gate": "C07", "dep_terminal": "1", "arr_gate": null},
+        "PC2610": {"flight_iata": "PC2610", "status": "active", "dep_iata": "SAW", "arr_iata": "ADB", "dep_time": "2026-11-03 19:20", "dep_estimated": "2026-11-03 19:50", "dep_delayed": 30, "arr_delayed": 25, "dep_gate": "204", "dep_terminal": null, "arr_gate": null}
+      }
+    }
+  ]
+}

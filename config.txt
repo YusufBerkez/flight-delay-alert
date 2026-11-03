@@ -1,0 +1,34 @@
+# Flight Delay Alert settings: one "key = value" per line, # starts a comment.
+
+# Where the flight facts come from:
+#   demo    = demo_data.json (no internet, safe for presentations)
+#   airlabs = AirLabs API (needs a free key, see README)
+source = demo
+
+# Name of the environment variable that holds the AirLabs key.
+# The key itself never goes into this file or into Git.
+api_key_env = AIRLABS_API_KEY
+
+# Push notifications with ntfy. Leave ntfy_topic empty to only print alerts.
+ntfy_server = https://ntfy.sh
+ntfy_topic =
+ntfy_token_env = NTFY_TOKEN
+
+# Alert when a flight is at least this many minutes late,
+# and again each time the delay grows by delay_step_min more.
+# A flight in flights.json can have its own threshold_min.
+delay_threshold_min = 15
+delay_step_min = 15
+
+# Seconds between rounds for "watch" (at least 30 with a real source).
+poll_interval_sec = 300
+
+# Stop calling the API when this many requests were used this month.
+# Set it a little below your plan's monthly limit.
+max_requests_per_month = 900
+
+# Files (relative names are next to this config file).
+flights_file = flights.json
+state_file = state.json
+log_file = alerts_log.txt
+demo_file = demo_data.json

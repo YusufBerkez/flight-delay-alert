@@ -1,14 +1,14 @@
 # Contribution – Elif Aktaş
 
-- **Student ID:** [student id]
-- **GitHub:** [github username]
+- **Student ID:** [2409011009]
+- **GitHub:** [aelif-aktas]
 - **Role:** Safe storage and notifications
-- **Branch / Pull Request:** `feature/storage-notify` → [PR link]
+- **Branch / Pull Request:** `feature/storage-notify` 
 
 ## Files I wrote
 - `storage.py`
 - `notifier.py`
-- `contributions/ELIF_AKTAS_OGRENCINO_GITHUBADI.md`
+- `contributions/ELIF_AKTAS_2409011009_aelif-aktas.md`
 
 ## What I implemented
 - `write_text_safely()` writes to a temporary file, keeps the old file as `.bak` and only then moves the new file into place, so a crash never leaves a half-written state.

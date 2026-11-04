@@ -11,7 +11,7 @@
 - `menu.py`
 - `cli.py`
 - `README.md`
-- `contributions/YUSUF_BERKE_ZENGIN_OGRENCINO_GITHUBADI.md`
+- `contributions/YUSUF_BERKE_ZENGIN_2409111002_yusufberkez.md`
 
 ## What I implemented
 - `run_round()`: fetch -> validate -> compare -> notify -> save for every flight; the saved record changes only after the alert was delivered.
